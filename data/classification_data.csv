@@ -1,0 +1,27 @@
+import pandas as pd
+import numpy as np
+
+
+np.random.seed(42)
+
+
+rows = 200
+
+
+data = {
+"Age": np.random.randint(18, 60, rows),
+"Income": np.random.randint(20000, 100000, rows),
+"Spending_Score": np.random.randint(1, 100, rows)
+}
+
+
+df = pd.DataFrame(data)
+
+
+# Target variable
+df["Purchase"] = np.where(df["Spending_Score"] > 50, 1, 0)
+
+
+# Save dataset
+df.to_csv("classification_data.csv", index=False)
+print("classification_data.csv created")
