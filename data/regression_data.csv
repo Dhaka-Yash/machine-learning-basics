@@ -1,0 +1,32 @@
+import pandas as pd
+import numpy as np
+
+
+np.random.seed(42)
+
+
+rows = 200
+
+
+data = {
+"Experience": np.random.randint(0, 10, rows),
+"Education_Level": np.random.randint(1, 4, rows),
+"Hours_Worked": np.random.randint(30, 60, rows)
+}
+
+
+df = pd.DataFrame(data)
+
+
+# Target variable
+df["Salary"] = (
+df["Experience"] * 5000 +
+df["Education_Level"] * 8000 +
+df["Hours_Worked"] * 1000 +
+np.random.randint(-5000, 5000, rows)
+)
+
+
+# Save dataset
+df.to_csv("regression_data.csv", index=False)
+print("regression_data.csv created")
